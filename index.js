@@ -19,6 +19,7 @@ async function run() {
     try {
         await client.connect();
         const serviceCollection = client.db('grocery-warehouse').collection('my grocery');
+        const orderCollection = client.db('grocery-warehouse').collection('order');
 
         app.get('/inventory', async (req, res) => {
             const querry = {};
@@ -42,10 +43,16 @@ async function run() {
         });
 
         // Delete
-        app.delete('/inventory/:id', async(req, res){
+        app.delete('/inventory/:id', async(req, res) =>{
             const id = req.params.id;
             const query = {_id: ObjectId(id)};
             const result = await serviceCollection.deleteOne(query);
+            res.send(result);
+        });
+        // order
+        app.post('/order', async(req, res) =>{
+            const order = req.body;
+            const result = await orderCollection.insertOne(order);
             res.send(result);
         })
     }
