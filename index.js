@@ -2,8 +2,13 @@ const express = require('express');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config();
-const port = process.env.Port || 5000;
+const port = process.env.PORT || 5000;
+
 const app = express();
+
+// var distDir = __dirname + "/dist/";
+
+// app.use(express.static(distDir));
 
 // middleware
 app.use(cors());
@@ -75,6 +80,11 @@ run().catch(console.dir);
 app.get('/', (req, res) => {
     res.send('Running Gocery Server');
 });
+
+app.get('/hero', (req, res) =>{
+    res.send('Hero meets hero ku')
+})
+
 app.listen(port, () => {
     console.log('listenning', port);
 })
