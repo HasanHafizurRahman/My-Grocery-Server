@@ -81,8 +81,8 @@ app.get('/', (req, res) => {
     res.send('Running Gocery Server');
 });
 
-app.get('/hero', (req, res) =>{
-    res.send('Hero meets hero ku')
+app.get('/my-items', (req, res) =>{
+    res.send('This site is under construction')
 })
 
 app.listen(port, () => {
